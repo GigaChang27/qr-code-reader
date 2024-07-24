@@ -7,42 +7,92 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the content horizontally */
+    justify-content: center;
+    align-items: flex-end; /* 內容對齊右邊 */
+    padding: 0 20px; /* 增加內邊距，避免內容緊貼邊緣 */
 }
 
 .header {
-    text-align: right;
-    width: 100%;
-    padding: 1rem;
+    text-align: left; /* 標題文字靠左對齊 */
+    margin-bottom: 2rem; /* 調整標題和內容之間的間距 */
+    width: 100%; /* 確保標題區域佔據全寬 */
 }
 
 h1 {
     color: #007bff;
-    font-size: 2.5rem;
+    font-size: 5rem; /* 調整標題文字大小 */
     margin: 0;
-    text-align: right; /* Align text to the right */
+    
 }
 
 .card {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid #ddd;
-    width: 80%; /* Adjust width to fit mobile devices */
-    max-width: 500px;
-    margin-top: 20px; /* Add margin to separate from header */
+    width: 100%; /* 確保卡片區域佔據父容器全寬 */
+    max-width: 600px; /* 設置最大寬度 */
 }
 
 .card-body {
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align text to the left */
-    text-align: right; /* Ensure text aligns to the right */
+    text-align: left; /* 卡片內容文字靠左對齊 */
+}
+
+label {
+    font-size: 1.5rem; /* 調整標籤文字大小 */
+    margin-top: 1rem; /* 調整標籤與其他元素之間的間距 */
+}
+
+input, textarea {
+    font-size: 1rem; /* 調整輸入框和文本區域的文字大小 */
+    width: calc(100% - 120px);
+    margin-top: 10px;
 }
 
 button {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 1rem; /* 調整按鈕文字大小 */
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.alert {
+    font-size: 1.2rem; /* 調整警告內容文字大小 */
+    border-radius: 8px;
+    text-align: left; /* 警告內容文字靠左對齊 */
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* 讀取資訊區域樣式 */
+#result {
+    font-size: 1.2rem; /* 調整讀取資訊文字大小 */
+    color: #333; /* 調整文字顏色 */
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+    border-radius: 8px;
+    margin-top: 1rem;
+    max-width: 100%; /* 確保資訊區域不會超出邊界 */
 }
