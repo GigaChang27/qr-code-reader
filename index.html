@@ -8,21 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>產品資訊</h1>
-        </div>
-        <div class="content">
-            <section class="card">
-                <div class="card-body">
-                    <button id="startScanBtn" class="btn btn-primary">開始掃描</button>
-                    <video id="video" width="300" height="300" style="border: 1px solid black;"></video>
-                    <canvas id="canvas" style="display: none;"></canvas>
-                    <div id="result" class="alert alert-info"></div>
-                </div>
-            </section>
-        </div>
+    <div class="header">
+        <h1>讀取 QR Code</h1>
     </div>
+    <section class="card">
+        <div class="card-body">
+            <button id="startScanBtn">開始掃描</button>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="result"></div>
+            <video id="video" width="300" height="300" style="display:none;"></video>
+        </div>
+    </section>
     <script src="read.js"></script>
 </body>
 </html>
