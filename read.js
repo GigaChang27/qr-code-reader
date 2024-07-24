@@ -1,20 +1,26 @@
-document.getElementById('startButton').addEventListener('click', function() {
-    const video = document.createElement('video');
+document.getElementById('startScanBtn').addEventListener('click', function() {
+    const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const resultDiv = document.getElementById('result');
+    const result = document.getElementById('result');
 
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
-        video.srcObject = stream;
-        video.setAttribute('playsinline', true); // 讓Safari瀏覽器也能正常顯示
-        video.play();
-        requestAnimationFrame(tick);
-    });
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then((stream) => {
+            video.srcObject = stream;
+            video.setAttribute('playsinline', true); // Required to tell iOS Safari we don't want fullscreen
+            video.play();
+            requestAnimationFrame(tick);
+        })
+        .catch((err) => {
+            result.textContent = 'Error accessing camera: ' + err;
+        });
 
     function tick() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            canvas.width = video.videoWidth;
+            canvas.style.display = 'block';
+            video.style.display = 'block';
             canvas.height = video.videoHeight;
+            canvas.width = video.videoWidth;
+            const context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const code = jsQR(imageData.data, imageData.width, imageData.height, {
@@ -22,35 +28,14 @@ document.getElementById('startButton').addEventListener('click', function() {
             });
 
             if (code) {
-                resultDiv.textContent = `QR Code 內容: ${code.data}`;
-                displayQRData(code.data);
+                result.textContent = 'QR Code 內容: ' + code.data;
+                video.pause();
                 video.srcObject.getTracks().forEach(track => track.stop());
+                video.style.display = 'none';
             } else {
-                resultDiv.textContent = '無法讀取 QR Code';
+                result.textContent = '未找到 QR Code，請重新掃描';
             }
         }
         requestAnimationFrame(tick);
     }
 });
-
-function displayQRData(data) {
-    const resultDiv = document.getElementById('result');
-    try {
-        const parsedData = JSON.parse(data);
-        let htmlContent = `
-            <p><strong>序號:</strong> ${parsedData.serialNumber}</p>
-            <p><strong>名稱:</strong> ${parsedData.productName}</p>
-            <p><strong>製造日期:</strong> ${parsedData.produceDate}</p>
-            <p><strong>保存期限:</strong> ${parsedData.expiryDate}</p>
-            <p><strong>成分:</strong> ${parsedData.ingredient}</p>
-            <p><strong>特色:</strong> ${parsedData.feature}</p>
-            <p><strong>使用方式:</strong> ${parsedData.instructions}</p>
-        `;
-        if (parsedData.image) {
-            htmlContent += `<img src="${parsedData.image}" alt="產品照片" style="max-width: 100%;">`;
-        }
-        resultDiv.innerHTML = htmlContent;
-    } catch (e) {
-        resultDiv.textContent = '無法解析 QR Code 內容';
-    }
-}
