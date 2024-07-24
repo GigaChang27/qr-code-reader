@@ -3,22 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>讀取 QR Code</title>
+    <title>產品資訊</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>讀取 QR Code</h1>
-    </div>
-    <section class="card">
+    
+    <h1>產品資訊</h1>
+    <nav>
+        <button onclick="showSection('readSection')">讀取 QR Code</button>
+        <button onclick="showSection('viewSection')">查看已儲存的資料</button>
+    </nav>
+   
+
+   
+    <section id="readSection" class="card">
         <div class="card-body">
-            <button id="startScanBtn">開始掃描</button>
+            <h2>上傳QR Code</h2>
+            <input type="file" id="fileInput" accept="image/*">
             <canvas id="canvas" style="display: none;"></canvas>
             <div id="result"></div>
-            <video id="video" width="300" height="300" style="display:none;"></video>
         </div>
     </section>
+
+    
+    <section id="viewSection" class="card" style="display: none;">
+        <div class="card-body" id="products">
+            
+        </div>
+    </section>
+
+    
+    <section id="detailsSection" class="card" style="display: none;">
+        <div class="card-body">
+            <button onclick="showSection('viewSection')">返回</button>
+            <div id="details"></div>
+        </div>
+    </section>
+
     <script src="read.js"></script>
 </body>
 </html>
