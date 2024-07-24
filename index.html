@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>產品資訊</title>
+    <title>讀取 QR Code</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>產品資訊</h1>
-    </header>
-    <section>
-        <video id="video" width="300" height="300" style="border: 1px solid gray;"></video>
-        <button id="startButton">開始掃描</button>
-        <canvas id="canvas" style="display: none;"></canvas>
-        <div id="result"></div>
-    </section>
+    <div class="container">
+        <div class="header">
+            <h1>產品資訊</h1>
+        </div>
+        <div class="content">
+            <section class="card">
+                <div class="card-body">
+                    <button id="startScanBtn" class="btn btn-primary">開始掃描</button>
+                    <video id="video" width="300" height="300" style="border: 1px solid black;"></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <div id="result" class="alert alert-info"></div>
+                </div>
+            </section>
+        </div>
+    </div>
     <script src="read.js"></script>
 </body>
 </html>
