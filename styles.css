@@ -7,51 +7,42 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* 將內容靠在頁面的右側 */
+    align-items: center; /* Center the content horizontally */
 }
 
 .header {
+    text-align: right;
     width: 100%;
-    text-align: center; /* 將標題文本靠右對齊 */
-    margin-bottom: 2rem; /* 調整標題和內容之間的間距 */
+    padding: 1rem;
 }
 
 h1 {
     color: #007bff;
     font-size: 2.5rem;
     margin: 0;
-}
-
-.content {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end; /* 將內容靠在頁面的右側 */
-    align-items: flex-start;
-    width: 90%;
-    max-width: 800px;
+    text-align: right; /* Align text to the right */
 }
 
 .card {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid #ddd;
-    width: 100%;
+    width: 80%; /* Adjust width to fit mobile devices */
+    max-width: 500px;
+    margin-top: 20px; /* Add margin to separate from header */
 }
 
 .card-body {
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: right; /* 內容區域文本靠右對齊 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+    text-align: right; /* Ensure text aligns to the right */
 }
 
-.alert {
-    font-size: 1.2em;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.alert-info {
-    background-color: #d1ecf1;
-    color: #0c5460;
+button {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
